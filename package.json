@@ -1,7 +1,7 @@
 {
   "name": "flash",
-  "productName": "poised-cabinet-tick-7yi4m",
-  "description": "My Electron application description",
+  "productName": "FlashDesk",
+  "description": "Remote Macro",
   "keywords": [],
   "main": "./main.js",
   "version": "1.0.0",
