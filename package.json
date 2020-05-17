@@ -8,8 +8,8 @@
   "author": "AmakoYoko",
   "scripts": {
     "start": "electron .",
-    "pack": "electron-builder --dir",
-    "dist": "electron-builder"
+    "pack": "npx electron-builder --dir",
+    "dist": "npx electron-builder"
   },
   "build": {
     "appId": "fdl-01"
@@ -27,6 +27,7 @@
   },
   "devDependencies": {
     "electron": "^8.3.0",
+    "electron-packager": "^14.2.1",
     "electron-rebuild": "^1.11.0",
     "node-key-sender": "^1.0.11"
   },
