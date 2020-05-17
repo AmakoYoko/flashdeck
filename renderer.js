@@ -3,16 +3,19 @@ var express = require('express');
 var exec = require('child_process').execFile;
 const rootPath = require('electron-root-path').rootPath;
 var robot = require("robotjs");
+const electron = require('electron');
 
+const configDir =  (electron.app || electron.remote.app).getPath('userData');
 
 const { readFileSync, fs } = require('fs') 
 
 var mms = 0;
 document.getElementById("app_logo").src = rootPath+"\\app.asar\\img\\logo.svg";
-document.getElementById("globallink").textContent = rootPath+"\\app.asar\\";
+
+
 
 document.querySelector('#validatebutton').addEventListener('click', () => {   
-    require('fs').writeFileSync(rootPath+"\\app.asar\\config.json", JSON.stringify(document.config), 'utf-8');
+    require('fs').writeFileSync(configDir+"\\config.json", JSON.stringify(document.config), 'utf-8');
 })
 var app=express();
 app.get('/',function(req,res)
@@ -22,13 +25,13 @@ res.send('flash');
 
 app.get('/config',function(req,res)
 {
-data = readFileSync(rootPath+"\\app.asar\\config.json", 'utf8')  
+data = readFileSync(configDir+"\\config.json", 'utf8')  
 data = JSON.parse(data);
 res.send(data);
 });
 
 app.get('/action', (req, res) => {
-    data = readFileSync(rootPath+"\\app.asar\\config.json", 'utf8')  
+    data = readFileSync(configDir+"\\config.json", 'utf8')  
     data = JSON.parse(data);
     
     if(data[req.query.button].type == 1){

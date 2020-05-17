@@ -15,9 +15,7 @@
     "appId": "fdl-01"
   },
   "files": [ 
-    "img/logo.svg", 
-    "config.json", 
-    "cmdmp3.exe" 
+    "!cmdmp3.exe"
 ], 
   "dependencies": {
     "audic": "^1.0.2",

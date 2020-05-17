@@ -1,13 +1,18 @@
 // Modules to control application life and create native browser window
 const {app, BrowserWindow} = require('electron')
-
-const { readFileSync, fs } = require('fs') // used to read files
+const electron = require('electron');
+const { existsSync,readFileSync, fs } = require('fs') // used to read files
 const { ipcMain } = require('electron') // used to communicate asynchronously from the main process to renderer processes.
 const rootPath = require('electron-root-path').rootPath;
-// function to read from a json file
+const configDir =  (electron.app || electron.remote.app).getPath('userData');
+if (!existsSync(configDir+"\\config.json")) {
+  console.log("write config")
+  require('fs').writeFileSync(configDir+"\\config.json", '{"1":{"name":"","img":"","type":"","action":""},"2":{"name":"","img":"","type":"","action":""},"3":{"name":"","img":"","type":"","action":""},"4":{"name":"","img":"","type":"","action":""},"5":{"name":"","img":"","type":,"action":""},"6":{"name":"","img":"","type":"","action":""},"7":{"name":"","img":"","type":"" ,"action":""},"8":{"name":"","img":"","type":"","action":""},"settings":{"computername":""}}', 'utf-8');
+}
+
 function readConfig () {
   
-  const data = readFileSync("./resources/app.asar/app/config.json", 'utf8')
+  const data = readFileSync("config.json", 'utf8')
   return data
 }
 
