@@ -17,5 +17,8 @@ build: off
 version: '{build}'
 shallow_clone: true
 clone_depth: 1
+artifacts:
+  - path: '**\*.exe'
+  - name: FlashDesk
 test_script:
   - npm run dist
