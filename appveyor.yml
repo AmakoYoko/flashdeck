@@ -21,3 +21,14 @@ shallow_clone: true
 clone_depth: 1
 test_script:
   - npm run dist
+deploy:
+  release: FlashDesk-v$(appveyor_build_version)
+  description: 'Release description'
+  provider: GitHub
+  auth_token:
+    secure: 97bb5e7214347b1fb95169c2678799dd824cb986           
+  draft: false
+  prerelease: false
+  on:
+    branch: master                 # release from master branch only
+    APPVEYOR_REPO_TAG: true        # deploy on tag push only
