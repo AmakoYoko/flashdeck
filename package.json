@@ -7,7 +7,12 @@
   "version": "1.0.0",
   "author": "AmakoYoko",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "build": {
+    "appId": "fdl-01"
   },
   "dependencies": {
     "audic": "^1.0.2",
@@ -25,5 +30,6 @@
     "electron-rebuild": "^1.11.0",
     "node-key-sender": "^1.0.11"
   },
-  "license": "ISC"
+  "license": "ISC",
+  "postinstall": "electron-builder install-app-deps"
 }
