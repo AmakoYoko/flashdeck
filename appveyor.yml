@@ -2,8 +2,6 @@ os: unstable
 cache:
   - node_modules
 environment:
-  GH_TOKEN:
-      secure: 97bb5e7214347b1fb95169c2678799dd824cb986
   matrix:
     - nodejs_version: 12.16.3
 install:
