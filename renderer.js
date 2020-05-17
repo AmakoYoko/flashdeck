@@ -9,7 +9,7 @@ const { readFileSync, fs } = require('fs')
 
 var mms = 0;
 document.getElementById("app_logo").src = rootPath+"\\app.asar\\img\\logo.svg";
-document.getElementById("globallink").textContent = rootPath+"app.asar\\";
+document.getElementById("globallink").textContent = rootPath+"\\app.asar\\";
 
 document.querySelector('#validatebutton').addEventListener('click', () => {   
     require('fs').writeFileSync(rootPath+"\\app.asar\\config.json", JSON.stringify(document.config), 'utf-8');
