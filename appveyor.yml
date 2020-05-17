@@ -18,6 +18,6 @@ version: '{build}'
 shallow_clone: true
 clone_depth: 1
 artifacts:
-  - path: '**\*.exe'
+  - path:  'dist\*.exe'
 test_script:
   - npm run dist
