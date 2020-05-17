@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   
+    <script
+    src="https://code.jquery.com/jquery-3.5.1.js"
+    integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous" onload="window.$ = window.jQuery = module.exports;"></script>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script>
+     
+      const { ipcRenderer } = require('electron')
+     
+      document.config = JSON.parse(ipcRenderer.sendSync('config_init', ''))
+      console.log(document.config)
+
+
+
+  </script>
+    <title>FlashDeck</title>
+    <style>
+      #app_logo{
+        height:5em
+      }
+      .card_btn{
+    background-color: white;
+    border-radius: 1em;
+    width: 5em;
+    height: 5em;
+      }
+      .card_btn:hover{
+        background-color:#d3d3d3;
+      }
+      
+      #haut{
+margin-bottom:1em;
+ }
+#container_btn{
+width:30em;
+}
+#result{
+  margin:1em;
+}
+.text_icon{
+  padding-top: 20%;
+    position: relative;
+    color:#424242;
+}
+    </style>
+  </head>
+
+  <body style="background-color:#424242;color:#FFF" onload="list_refresh()">
+    <p><img id="app_logo"><span>FlashDeck</span></p>
+
+    <div class="container" id="container_btn">
+
+      <div class="row" id="haut">
+        <div class="col-sm">
+    
+
+         <div class="card_btn" onclick="openmodalto('1')">
+          <center>
+         <p class="text_icon" id="text_1"></p>
+        </center>
+        </div>
+
+    
+        </div>
+        <div class="col-sm">
+              <div class="card_btn" onclick="openmodalto('2')">
+                <center>
+                <p class="text_icon" id="text_2"></p>
+              </center>
+    </div>
+        </div>
+        <div class="col-sm">
+              <div class="card_btn" onclick="openmodalto('3')">
+                <center>
+                <p class="text_icon" id="text_3"></p>
+              </center>
+    </div>
+        </div>
+        <div class="col-sm">
+               <div class="card_btn" onclick="openmodalto('4')">
+                <center>
+                <p class="text_icon" id="text_4"></p>
+              </center>
+    </div>
+        </div>
+      </div>
+    
+      <div class="row" id="bas">
+        <div class="col-sm">
+             <div class="card_btn" onclick="openmodalto('5')">
+              <center>
+              <p class="text_icon" id="text_5"></p>
+            </center>
+    </div>
+        </div>
+        <div class="col-sm">
+              <div class="card_btn" onclick="openmodalto('6')">
+                <center>
+                <p class="text_icon" id="text_6"></p>
+              </center>
+    </div>
+        </div>
+        <div class="col-sm">
+              <div class="card_btn" onclick="openmodalto('7')">
+                <center>
+                <p class="text_icon" id="text_7"></p>
+              </center>
+    </div>
+        </div>
+        <div class="col-sm">
+               <div class="card_btn" onclick="openmodalto('8')">
+                <center>
+                <p class="text_icon" id="text_8"></p>
+              </center>
+    </div>
+        </div>
+      </div>
+    
+    
+    </div>
+    
+    <center style="margin-top:2em">
+      <a href="#" onclick="$('#qrcodemodal').modal('show')" id="dwlbtn">Télécharger l'application</a>
+    </center>
+    <div class="modal fade" style="color:#000" id="qrcodemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="fdgdg">Application</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <center>
+           
+              <img src="https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=https://lamas.ga/download/deck.apk&choe=UTF-8" id="qrcode">
+            </center>
+              <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Fermer</button>
+            
+          </div> 
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div class="modal fade" style="color:#000" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="titlemodal">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Nom de la touche</p>
+
+            <input type="text" class="form-control" id="nameoftouche" >
+            <br>
+           <p>Action de la touche</p>
+            <select class="form-control" id="selectewheel" onchange="selectedchoose();">
+              <option value="0">Ne Rien Faire</option>
+              <option value="1">Ecrire une série de lettre</option>
+              <option value="2">Ouvrir un programme</option>
+              <option value="3">Jouer un son</option>     
+              <option value="4">Contrôle Multimedia</option>     
+            </select>
+            <div id="result">
+
+            </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>
+            <button type="button" onclick="validate();" id="validatebutton"class="btn btn-success">Valider</button>
+          </div> 
+        </div>
+      </div>
+    </div>
+
+<script>
+function list_refresh(){
+for (var i = 1; i < 9; i++) {
+
+
+$("#text_"+i).text(document.config[i].name)
+
+}
+list_refresh()
+
+}
+
+
+  var test= "ok";
+  
+  
+  var id_btn;
+  var valueselect;
+function openmodalto(id)
+{
+  id_btn = id;
+  $('#exampleModal').modal("show")
+  $("#titlemodal").text("Modifier le bouton "+id)
+  $("#nameoftouche").val(document.config[id].name);
+  $("#selectewheel").val(document.config[id].type)
+  selectedchoose()
+  $("#action").val(document.config[id].action)
+
+ 
+}  
+
+function selectedchoose(){
+  console.log("ok")
+  valueselect = $("#selectewheel").val();
+  if(valueselect == 0){
+    $("#result").html(``)
+  }
+
+
+  if(valueselect == 1){
+    $("#result").html(`<input type="text" class="form-control" id="action" placeholder="Suite de touche">
+    <br>
+    <p class="important">Certain caractère ne sont pas disponible (é,è,ù etc)</p>
+    `)
+  }
+
+  if(valueselect == 2){
+    $("#result").html(`<input type="file" id="action" class="form-control-file" >`)
+  }
+
+  if(valueselect == 3){
+    $("#result").html(`<input value="Ouvrir un son" id="action" type="file" accept="audio/mp3" class="form-control-file" >`)
+  }
+  if(valueselect == 4){
+    $("#result").html(`
+<div class="btn-group" role="group" aria-label="Basic example">
+  <button type="button" onclick="multimediamode('1');" class="btn btn-secondary">V+</button>
+  <button type="button" onclick="multimediamode('2');"class="btn btn-secondary">V-</button>
+  <button type="button" onclick="multimediamode('3');"class="btn btn-secondary">⏮️</button>
+  <button type="button" onclick="multimediamode('4');"class="btn btn-secondary">⏭</button>
+  <button type="button" onclick="multimediamode('5');"class="btn btn-secondary">⏯️</button>
+  <button type="button" onclick="multimediamode('6');"class="btn btn-secondary">Mute</button>
+</div>
+`)
+  }
+
+
+}
+
+function multimediamode(id){
+  multimediamodeid = id;
+}
+function validate(){
+console.log(id_btn)
+console.log(valueselect)
+console.log($("#nameoftouche").val())
+if(valueselect == 2 || valueselect == 3){
+console.log(document.getElementById("action").files[0].path)
+actionuri = document.getElementById("action").files[0].path
+}else{
+  actionuri = $("#action").val()
+  console.log($("#action").val())
+}
+if(valueselect == 4){
+  actionuri = multimediamodeid;
+}
+document.config[id_btn].name = $("#nameoftouche").val();
+document.config[id_btn].type = valueselect;
+document.config[id_btn].action = actionuri;
+
+$('#exampleModal').modal("hide")
+list_refresh()
+
+
+
+
+}
+</script>
+<span id="globallink" style="display:none"></span>
+   <script>
+      require('./renderer.js')
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
