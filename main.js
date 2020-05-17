@@ -7,15 +7,15 @@ const rootPath = require('electron-root-path').rootPath;
 const configDir =  (electron.app || electron.remote.app).getPath('userData');
 if (!existsSync(configDir+"\\config.json")) {
   console.log("write config")
-  require('fs').writeFileSync(configDir+"\\config.json", '{"1":{"name":"","img":"","type":"","action":""},"2":{"name":"","img":"","type":"","action":""},"3":{"name":"","img":"","type":"","action":""},"4":{"name":"","img":"","type":"","action":""},"5":{"name":"","img":"","type":,"action":""},"6":{"name":"","img":"","type":"","action":""},"7":{"name":"","img":"","type":"" ,"action":""},"8":{"name":"","img":"","type":"","action":""},"settings":{"computername":""}}', 'utf-8');
+  require('fs').writeFileSync(configDir+"\\config.json", '{"1":{"name":"","img":"","type":"0","action":""},"2":{"name":"","img":"","type":"0","action":""},"3":{"name":"","img":"","type":"0","action":""},"4":{"name":"","img":"","type":"0","action":""},"5":{"name":"","img":"","type":"0","action":""},"6":{"name":"","img":"","type":"0","action":""},"7":{"name":"","img":"","type":"0" ,"action":""},"8":{"name":"","img":"","type":"0","action":""},"settings":{"computername":""}}', 'utf-8');
 }
+
 
 function readConfig () {
-  
-  const data = readFileSync("config.json", 'utf8')
+  const data = readFileSync(configDir+"\\config.json", 'utf8')
   return data
 }
-
+console.log(readConfig())
 ipcMain.on('config_init', (event, arg) => {
   console.log(arg)
   event.returnValue = readConfig()
@@ -36,7 +36,7 @@ function createWindow () {
     }
   })
 
-  //mainWindow.setMenu(null);
+  mainWindow.setMenu(null);
   mainWindow.loadFile('index.html')
 
   // Open the DevTools.

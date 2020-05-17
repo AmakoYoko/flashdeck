@@ -15,7 +15,7 @@
     <script>
      
       const { ipcRenderer } = require('electron')
-     
+      console.log(ipcRenderer.sendSync('config_init', ''))
       document.config = JSON.parse(ipcRenderer.sendSync('config_init', ''))
       console.log(document.config)
 
@@ -24,7 +24,7 @@
   </script>
     <title>FlashDeck</title>
     <style>
-      #app_logo{
+      .app_logo{
         height:5em
       }
       .card_btn{
@@ -55,7 +55,7 @@ width:30em;
   </head>
 
   <body style="background-color:#424242;color:#FFF" onload="list_refresh()">
-    <p><img id="app_logo"><span>FlashDeck</span></p>
+    <p><img alt="" class="app_logo" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CgogPGc+CiAgPHRpdGxlPmJhY2tncm91bmQ8L3RpdGxlPgogIDxyZWN0IGZpbGw9Im5vbmUiIGlkPSJjYW52YXNfYmFja2dyb3VuZCIgaGVpZ2h0PSI0MDIiIHdpZHRoPSI1ODIiIHk9Ii0xIiB4PSItMSIvPgogPC9nPgogPGc+CiAgPHRpdGxlPkxheWVyIDE8L3RpdGxlPgogIDxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlLXdpZHRoPSIwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZT0iI2ZmZmZmZiIgZmlsbD0iI2ZmNmU2ZSIgaWQ9InN2Z18xIiBkPSJtMzMsOGwtMTIuMTU4LDBsLTYuODQyLDE0bDYsMGwtOCwxOGwyNCwtMTlsLTksMGw2LC0xM3oiIGNsYXNzPSJ2aS1wcmltYXJ5Ii8+CiAgPHBhdGggZmlsbD0iIzdmN2Y3ZiIgZmlsbC1ydWxlPSJldmVub2RkIiBzdHJva2Utd2lkdGg9IjAiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlPSIjZmZmZmZmIiBpZD0ic3ZnXzIiIGQ9Im0yOC40MjEsMjcuMTA4Njk2bC0xNi40MjEsMTNsNS43NzgsLTEzbDEwLjY0MywweiIgY2xhc3M9InZpLWFjY2VudCIvPgogPC9nPgo8L3N2Zz4=" /><span>FlashDeck</span></p>
 
     <div class="container" id="container_btn">
 

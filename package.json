@@ -12,11 +12,17 @@
     "dist": "npx electron-builder"
   },
   "build": {
-    "appId": "fdl-01"
+    "appId": "fdl-01",
+    "extraResources": [
+      {
+        "from": "./cmdmp3.exe",
+        "to": "cmdmp3.exe",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ]
   },
-  "files": [ 
-    "!cmdmp3.exe"
-], 
   "dependencies": {
     "audic": "^1.0.2",
     "electron-root-path": "^1.0.16",

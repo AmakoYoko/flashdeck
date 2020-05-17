@@ -10,7 +10,7 @@ const configDir =  (electron.app || electron.remote.app).getPath('userData');
 const { readFileSync, fs } = require('fs') 
 
 var mms = 0;
-document.getElementById("app_logo").src = rootPath+"\\app.asar\\img\\logo.svg";
+
 
 
 
@@ -45,7 +45,7 @@ app.get('/action', (req, res) => {
     if(data[req.query.button].type == 3){
       
         console.log(data[req.query.button].action)
-        var executablePath = rootPath+"\\app.asar\\cmdmp3.exe";
+        var executablePath = rootPath+"\\resources\\cmdmp3.exe";
         var parameters = [data[req.query.button].action];
         exec(executablePath, parameters, function(err, data) {
             console.log(err)
