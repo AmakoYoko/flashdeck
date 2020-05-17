@@ -7,7 +7,7 @@ const rootPath = require('electron-root-path').rootPath;
 // function to read from a json file
 function readConfig () {
   
-  const data = readFileSync("config.json", 'utf8')
+  const data = readFileSync("./resources/app.asar/app/config.json", 'utf8')
   return data
 }
 
