@@ -4,7 +4,7 @@
   "description": "Remote Macro",
   "keywords": [],
   "main": "./main.js",
-  "version": "1.0.0",
+  "version": "2.1.1",
   "author": "AmakoYoko",
   "scripts": {
     "start": "electron .",
@@ -15,8 +15,8 @@
     "appId": "fdl-01",
     "extraResources": [
       {
-        "from": "./cmdmp3.exe",
-        "to": "cmdmp3.exe",
+        "from": "./mp3.exe",
+        "to": "mp3.exe",
         "filter": [
           "**/*"
         ]

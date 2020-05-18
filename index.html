@@ -15,10 +15,18 @@
     <script>
      
       const { ipcRenderer } = require('electron')
-      console.log(ipcRenderer.sendSync('config_init', ''))
       document.config = JSON.parse(ipcRenderer.sendSync('config_init', ''))
       console.log(document.config)
-
+      
+      
+      var syncdevices = setInterval(function(){
+        synstate = ipcRenderer.sendSync('connecok', '')
+        console.log(synstate)
+        if(synstate == 1){
+          $('#waitingmobile').modal("hide");
+          clearInterval(syncdevices)
+        }
+      }, 500)
 
 
   </script>
@@ -54,7 +62,7 @@ width:30em;
     </style>
   </head>
 
-  <body style="background-color:#424242;color:#FFF" onload="list_refresh()">
+  <body style="background-color:#424242;color:#FFF" onload="init()">
     <p><img alt="" class="app_logo" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CgogPGc+CiAgPHRpdGxlPmJhY2tncm91bmQ8L3RpdGxlPgogIDxyZWN0IGZpbGw9Im5vbmUiIGlkPSJjYW52YXNfYmFja2dyb3VuZCIgaGVpZ2h0PSI0MDIiIHdpZHRoPSI1ODIiIHk9Ii0xIiB4PSItMSIvPgogPC9nPgogPGc+CiAgPHRpdGxlPkxheWVyIDE8L3RpdGxlPgogIDxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlLXdpZHRoPSIwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZT0iI2ZmZmZmZiIgZmlsbD0iI2ZmNmU2ZSIgaWQ9InN2Z18xIiBkPSJtMzMsOGwtMTIuMTU4LDBsLTYuODQyLDE0bDYsMGwtOCwxOGwyNCwtMTlsLTksMGw2LC0xM3oiIGNsYXNzPSJ2aS1wcmltYXJ5Ii8+CiAgPHBhdGggZmlsbD0iIzdmN2Y3ZiIgZmlsbC1ydWxlPSJldmVub2RkIiBzdHJva2Utd2lkdGg9IjAiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlPSIjZmZmZmZmIiBpZD0ic3ZnXzIiIGQ9Im0yOC40MjEsMjcuMTA4Njk2bC0xNi40MjEsMTNsNS43NzgsLTEzbDEwLjY0MywweiIgY2xhc3M9InZpLWFjY2VudCIvPgogPC9nPgo8L3N2Zz4=" /><span>FlashDeck</span></p>
 
     <div class="container" id="container_btn">
@@ -128,31 +136,7 @@ width:30em;
     
     </div>
     
-    <center style="margin-top:2em">
-      <a href="#" onclick="$('#qrcodemodal').modal('show')" id="dwlbtn">Télécharger l'application</a>
-    </center>
-    <div class="modal fade" style="color:#000" id="qrcodemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="fdgdg">Application</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <center>
-           
-              <img src="https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=https://lamas.ga/download/deck.apk&choe=UTF-8" id="qrcode">
-            </center>
-              <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-dismiss="modal">Fermer</button>
-            
-          </div> 
-        </div>
-      </div>
-    </div>
-  </div>
+  
 
     <div class="modal fade" style="color:#000" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -186,6 +170,29 @@ width:30em;
         </div>
       </div>
     </div>
+  </div>
+
+
+
+    <div class="modal fade" style="color:#000" id="waitingmobile" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h6 class="modal-title" id="fdgdg">En attente d'un appareil</h6>
+             
+           
+          </div>
+          <div class="modal-body">
+            <center>
+              <img alt="" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBzdHlsZT0ibWFyZ2luOiBhdXRvOyBiYWNrZ3JvdW5kOiBub25lOyBkaXNwbGF5OiBibG9jazsgc2hhcGUtcmVuZGVyaW5nOiBhdXRvOyIgd2lkdGg9IjIxMXB4IiBoZWlnaHQ9IjIxMXB4IiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQiPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMyNjIzMjMiIHN0cm9rZS13aWR0aD0iNiIgc3Ryb2tlLWRhc2hhcnJheT0iNDIuNzY0ODIxMzcwNDQyNzEgNDIuNzY0ODIxMzcwNDQyNzEiIGQ9Ik0yNC4zIDMwQzExLjQgMzAgNSA0My4zIDUgNTBzNi40IDIwIDE5LjMgMjBjMTkuMyAwIDMyLjEtNDAgNTEuNC00MCBDODguNiAzMCA5NSA0My4zIDk1IDUwcy02LjQgMjAtMTkuMyAyMEM1Ni40IDcwIDQzLjYgMzAgMjQuMyAzMHoiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3R5bGU9InRyYW5zZm9ybTpzY2FsZSgwLjg4KTt0cmFuc2Zvcm0tb3JpZ2luOjUwcHggNTBweCI+CiAgPGFuaW1hdGUgYXR0cmlidXRlTmFtZT0ic3Ryb2tlLWRhc2hvZmZzZXQiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIiBkdXI9IjAuOTgwMzkyMTU2ODYyNzQ1MXMiIGtleVRpbWVzPSIwOzEiIHZhbHVlcz0iMDsyNTYuNTg4OTI4MjIyNjU2MjUiPjwvYW5pbWF0ZT4KPC9wYXRoPgo8IS0tIFtsZGlvXSBnZW5lcmF0ZWQgYnkgaHR0cHM6Ly9sb2FkaW5nLmlvLyAtLT48L3N2Zz4=" />
+              <br><small data-dismiss="modal">Fermer cette page</small>
+
+            </center>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
 <script>
 function list_refresh(){
@@ -199,8 +206,11 @@ list_refresh()
 
 }
 
-
-  var test= "ok";
+function init(){
+  $('#waitingmobile').modal("show");
+  list_refresh();
+  
+}
   
   
   var id_btn;

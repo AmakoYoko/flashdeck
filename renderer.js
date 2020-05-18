@@ -1,5 +1,6 @@
 
 var express = require('express');
+const { ipcRenderer } = require('electron')
 var exec = require('child_process').execFile;
 const rootPath = require('electron-root-path').rootPath;
 var robot = require("robotjs");
@@ -21,6 +22,12 @@ var app=express();
 app.get('/',function(req,res)
 {
 res.send('flash');
+});
+
+app.get('/connreq',function(req,res)
+{
+    console.log(ipcRenderer.sendSync('sync_devices', 'connexion'))
+    res.send("ok")
 });
 
 app.get('/config',function(req,res)
@@ -45,7 +52,7 @@ app.get('/action', (req, res) => {
     if(data[req.query.button].type == 3){
       
         console.log(data[req.query.button].action)
-        var executablePath = rootPath+"\\resources\\cmdmp3.exe";
+        var executablePath = rootPath+"\\resources\\mp3.exe";
         var parameters = [data[req.query.button].action];
         exec(executablePath, parameters, function(err, data) {
             console.log(err)

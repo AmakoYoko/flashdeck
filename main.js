@@ -15,22 +15,28 @@ function readConfig () {
   const data = readFileSync(configDir+"\\config.json", 'utf8')
   return data
 }
-console.log(readConfig())
 ipcMain.on('config_init', (event, arg) => {
   console.log(arg)
   event.returnValue = readConfig()
 })
 
+var stt = 0;
+ipcMain.on('sync_devices', (event, arg) => {
+  event.returnValue = "1"
+  stt = 1
+})
 
-
+ipcMain.on('connecok', (event, arg) => {  
+  event.returnValue = stt
+})
 
 function createWindow () {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     width: 800,
-    height: 600,
+    height: 400,
     resizable: false,
-    
+    icon: __dirname + '/icon.ico',
     webPreferences: {
       nodeIntegration: true
     }
@@ -40,7 +46,7 @@ function createWindow () {
   mainWindow.loadFile('index.html')
 
   // Open the DevTools.
-  //mainWindow.webContents.openDevTools()
+ // mainWindow.webContents.openDevTools()
 }
 
 
