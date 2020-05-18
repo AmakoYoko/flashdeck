@@ -10,9 +10,8 @@ Grâce à FlashDeck vous pouvez créer des macros et les actionner depuis votre 
 
 
 ### A faire
-
+ - Dans l'appli : Fermer la connexion quand le client se ferme
  - Ajouter les touches CTRL, Shift etc
- - Ajouter un le logo
  - Faire plusieurs deck
  - Ajouter un menu paramètre 
  - Permettre de changer de Port
