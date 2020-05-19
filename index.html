@@ -138,7 +138,7 @@ width:30em;
     
   
 
-    <div class="modal fade" style="color:#000" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade"  data-backdrop="static" data-keyboard="false" style="color:#000" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -158,7 +158,8 @@ width:30em;
               <option value="1">Ecrire une série de lettre</option>
               <option value="2">Ouvrir un programme</option>
               <option value="3">Jouer un son</option>     
-              <option value="4">Contrôle Multimedia</option>     
+              <option value="4">Contrôle Multimedia</option>
+              <option value="5">Raccourci Clavier</option>          
             </select>
             <div id="result">
 
@@ -184,7 +185,9 @@ width:30em;
           </div>
           <div class="modal-body">
             <center>
-              <img alt="" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBzdHlsZT0ibWFyZ2luOiBhdXRvOyBiYWNrZ3JvdW5kOiBub25lOyBkaXNwbGF5OiBibG9jazsgc2hhcGUtcmVuZGVyaW5nOiBhdXRvOyIgd2lkdGg9IjIxMXB4IiBoZWlnaHQ9IjIxMXB4IiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQiPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMyNjIzMjMiIHN0cm9rZS13aWR0aD0iNiIgc3Ryb2tlLWRhc2hhcnJheT0iNDIuNzY0ODIxMzcwNDQyNzEgNDIuNzY0ODIxMzcwNDQyNzEiIGQ9Ik0yNC4zIDMwQzExLjQgMzAgNSA0My4zIDUgNTBzNi40IDIwIDE5LjMgMjBjMTkuMyAwIDMyLjEtNDAgNTEuNC00MCBDODguNiAzMCA5NSA0My4zIDk1IDUwcy02LjQgMjAtMTkuMyAyMEM1Ni40IDcwIDQzLjYgMzAgMjQuMyAzMHoiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3R5bGU9InRyYW5zZm9ybTpzY2FsZSgwLjg4KTt0cmFuc2Zvcm0tb3JpZ2luOjUwcHggNTBweCI+CiAgPGFuaW1hdGUgYXR0cmlidXRlTmFtZT0ic3Ryb2tlLWRhc2hvZmZzZXQiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIiBkdXI9IjAuOTgwMzkyMTU2ODYyNzQ1MXMiIGtleVRpbWVzPSIwOzEiIHZhbHVlcz0iMDsyNTYuNTg4OTI4MjIyNjU2MjUiPjwvYW5pbWF0ZT4KPC9wYXRoPgo8IS0tIFtsZGlvXSBnZW5lcmF0ZWQgYnkgaHR0cHM6Ly9sb2FkaW5nLmlvLyAtLT48L3N2Zz4=" />
+              <img alt="" style="height:2em" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBzdHlsZT0ibWFyZ2luOiBhdXRvOyBiYWNrZ3JvdW5kOiBub25lOyBkaXNwbGF5OiBibG9jazsgc2hhcGUtcmVuZGVyaW5nOiBhdXRvOyIgd2lkdGg9IjIxMXB4IiBoZWlnaHQ9IjIxMXB4IiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQiPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMyNjIzMjMiIHN0cm9rZS13aWR0aD0iNiIgc3Ryb2tlLWRhc2hhcnJheT0iNDIuNzY0ODIxMzcwNDQyNzEgNDIuNzY0ODIxMzcwNDQyNzEiIGQ9Ik0yNC4zIDMwQzExLjQgMzAgNSA0My4zIDUgNTBzNi40IDIwIDE5LjMgMjBjMTkuMyAwIDMyLjEtNDAgNTEuNC00MCBDODguNiAzMCA5NSA0My4zIDk1IDUwcy02LjQgMjAtMTkuMyAyMEM1Ni40IDcwIDQzLjYgMzAgMjQuMyAzMHoiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3R5bGU9InRyYW5zZm9ybTpzY2FsZSgwLjg4KTt0cmFuc2Zvcm0tb3JpZ2luOjUwcHggNTBweCI+CiAgPGFuaW1hdGUgYXR0cmlidXRlTmFtZT0ic3Ryb2tlLWRhc2hvZmZzZXQiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIiBkdXI9IjAuOTgwMzkyMTU2ODYyNzQ1MXMiIGtleVRpbWVzPSIwOzEiIHZhbHVlcz0iMDsyNTYuNTg4OTI4MjIyNjU2MjUiPjwvYW5pbWF0ZT4KPC9wYXRoPgo8IS0tIFtsZGlvXSBnZW5lcmF0ZWQgYnkgaHR0cHM6Ly9sb2FkaW5nLmlvLyAtLT48L3N2Zz4=" />
+            
+              <br><p>télécharger l'app :</p><img style="height:6em" src="https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=https://lamas.ga/download/deck.apk&choe=UTF-8">
               <br><small data-dismiss="modal">Fermer cette page</small>
 
             </center>
@@ -197,8 +200,6 @@ width:30em;
 <script>
 function list_refresh(){
 for (var i = 1; i < 9; i++) {
-
-
 $("#text_"+i).text(document.config[i].name)
 
 }
@@ -224,7 +225,9 @@ function openmodalto(id)
   $("#selectewheel").val(document.config[id].type)
   selectedchoose()
   $("#action").val(document.config[id].action)
+  $("#listeninput").val(document.config[id].action)
 
+  
  
 }  
 
@@ -263,9 +266,53 @@ function selectedchoose(){
 `)
   }
 
+  if(valueselect == 5){
+    $("#result").html(`
+    <div class="input-group mb-3">
+  <input type="text" class="form-control" id="listeninput" readonly onkeydown="listenkey(event)" placeholder="Touche clavier" aria-label="Recipient's username" aria-describedby="button-addon2">
+  <div class="input-group-append">
+    <input class="btn btn-outline-secondary"  id="startbutton" onclick="startlisten()" type="button" value="Saisi">
+
+    </div>
+</div>
+
+`)
+  }
+
 
 }
+var stps = 0;
+var array;
+function startlisten(){
+  if(stps == 0){
+document.querySelector('#startbutton').value = 'Arrêter';
+document.querySelector("#listeninput").focus();
 
+document.querySelector('#startbutton').classList.remove("btn-outline-secondary");
+document.querySelector('#startbutton').classList.add("btn-outline-danger");
+array = [];
+stps = 1;
+}else{
+document.querySelector('#startbutton').value = 'Saisi';
+
+document.querySelector('#startbutton').classList.remove("btn-outline-danger");
+document.querySelector('#startbutton').classList.add("btn-outline-secondary");
+
+stps = 0;
+}
+
+
+
+}
+var bx;
+function listenkey(event){
+  var x = event.key;
+  if (x != bx){
+  bx=x;
+  document.getElementById("listeninput").value = document.getElementById("listeninput").value + x + " - ";
+  array.push(x);
+  }
+}
 function multimediamode(id){
   multimediamodeid = id;
 }
@@ -282,6 +329,9 @@ actionuri = document.getElementById("action").files[0].path
 }
 if(valueselect == 4){
   actionuri = multimediamodeid;
+}
+if(valueselect == 5){
+  actionuri = array.toString();
 }
 document.config[id_btn].name = $("#nameoftouche").val();
 document.config[id_btn].type = valueselect;

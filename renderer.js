@@ -97,7 +97,29 @@ app.get('/action', (req, res) => {
         if(data[req.query.button].action == 6){
             robot.keyTap("audio_mute")
         }    
+
+
+
+        
     }
+
+    if(data[req.query.button].type == 5){
+        arraybutton = data[req.query.button].action.split(",");
+        console.log(arraybutton)
+        arraybutton.forEach(function(item, index, array) {
+            console.log(item);
+            robot.keyToggle(item.toLowerCase(), "down")
+          });
+    
+          arraybutton.forEach(function(item, index, array) {
+            
+            robot.keyToggle(item.toLowerCase(), "up")
+          });
+
+    }
+
+
+ 
 
     res.send("ok");
 
