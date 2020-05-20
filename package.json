@@ -4,7 +4,7 @@
   "description": "Remote Macro",
   "keywords": [],
   "main": "./main.js",
-  "version": "2.1.2",
+  "version": "3.0.3",
   "author": "AmakoYoko",
   "scripts": {
     "start": "electron .",
@@ -27,6 +27,7 @@
     "audic": "^1.0.2",
     "electron-root-path": "^1.0.16",
     "express": "^4.17.1",
+    "net": "^1.0.2",
     "node-mp3-player": "^1.0.3",
     "play-sound": "^1.1.3",
     "robotjs": "^0.6.0",

@@ -5,12 +5,41 @@ var exec = require('child_process').execFile;
 const rootPath = require('electron-root-path').rootPath;
 var robot = require("robotjs");
 const electron = require('electron');
-
+var net = require('net');
 const configDir =  (electron.app || electron.remote.app).getPath('userData');
 
 const { readFileSync, fs } = require('fs') 
 
 var mms = 0;
+
+function getRandomIntInclusive(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min +1)) + min;
+  }
+  function getNetworkIP(callback) {
+    var socket = net.createConnection(80, 'google.com');
+    socket.on('connect', function() {
+      callback(undefined, socket.address().address);
+      socket.end();
+    });
+    socket.on('error', function(e) {
+      callback(e, 'error');
+    });
+  }
+var net_port = getRandomIntInclusive(1000,9999);
+
+getNetworkIP(function (error, ip) {
+    console.log(ip);
+    document.getElementById("qrcodeappli").src="https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=http://"+ip+":"+net_port+"/app&choe=UTF-8";
+   
+    document.getElementById("qrcodesub").textContent = net_port;
+    
+    if (error) {
+        console.log('error:', error);
+    }
+  });
+//
 
 
 
@@ -127,6 +156,8 @@ app.get('/action', (req, res) => {
    
 })
 
+app.use('/app', express.static(__dirname + '/mobile'));
 
-var server=app.listen(3000,function() {});
 
+var server=app.listen(net_port,function() {});
+console.log("HTTP : "+net_port)

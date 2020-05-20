@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<style>
+
+.center {
+  margin: auto;
+  width: 50%;
+  text-align: center;
+  padding: 10px;
+}
+.init_page{
+    margin-top:5em
+}
+.card_btn{
+  
+    background-color: white;
+    border-radius: 1em;
+    width: 6em;
+    height: 6em;
+      }
+      .card_btn:hover{
+        background-color:#d3d3d3;
+      }
+      
+      #haut{
+margin-bottom:1em;
+ }
+#container_btn{
+margin-top:2em;
+width:40em;
+}
+.text_icon{
+  padding-top: 20%;
+    position: relative;
+    color:#424242;
+}
+#pleaserotate-graphic{
+        fill: #fff;
+    }
+
+    #pleaserotate-backdrop {
+        color: #fff;
+        background-color: #000;
+    }
+</style>
+  </head>
+  <body onload="init()" style="background-color: #424242;">
+
+
+
+<div class="center init_page">
+    <h1 style="color:#FFF; font-size:3em"><img style="height:2em" src="logo.svg">FlashDesk</h1>
+    <button onclick="start_app()" style="width:15em" type="button" class="btn btn-success">Démarrer</button>  
+</div>
+
+<div class="load_page">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Synchronisation avec l'ordinateur</h5>
+            </div>
+            <div class="modal-body">
+                <center>
+                    <img alt="" style="height:3em" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBzdHlsZT0ibWFyZ2luOiBhdXRvOyBiYWNrZ3JvdW5kOiBub25lOyBkaXNwbGF5OiBibG9jazsgc2hhcGUtcmVuZGVyaW5nOiBhdXRvOyIgd2lkdGg9IjIxMXB4IiBoZWlnaHQ9IjIxMXB4IiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQiPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMyNjIzMjMiIHN0cm9rZS13aWR0aD0iNiIgc3Ryb2tlLWRhc2hhcnJheT0iNDIuNzY0ODIxMzcwNDQyNzEgNDIuNzY0ODIxMzcwNDQyNzEiIGQ9Ik0yNC4zIDMwQzExLjQgMzAgNSA0My4zIDUgNTBzNi40IDIwIDE5LjMgMjBjMTkuMyAwIDMyLjEtNDAgNTEuNC00MCBDODguNiAzMCA5NSA0My4zIDk1IDUwcy02LjQgMjAtMTkuMyAyMEM1Ni40IDcwIDQzLjYgMzAgMjQuMyAzMHoiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3R5bGU9InRyYW5zZm9ybTpzY2FsZSgwLjg4KTt0cmFuc2Zvcm0tb3JpZ2luOjUwcHggNTBweCI+CiAgPGFuaW1hdGUgYXR0cmlidXRlTmFtZT0ic3Ryb2tlLWRhc2hvZmZzZXQiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIiBkdXI9IjAuOTgwMzkyMTU2ODYyNzQ1MXMiIGtleVRpbWVzPSIwOzEiIHZhbHVlcz0iMDsyNTYuNTg4OTI4MjIyNjU2MjUiPjwvYW5pbWF0ZT4KPC9wYXRoPgo8IS0tIFtsZGlvXSBnZW5lcmF0ZWQgYnkgaHR0cHM6Ly9sb2FkaW5nLmlvLyAtLT48L3N2Zz4=" />
+               
+            <hr>
+            <p>Récupération du fichier de configuration</p>
+        </center>
+            </div>
+            
+            
+          </div>
+        </div>
+</div>
+
+
+<div class="button_page">
+
+  <div class="container" id="container_btn">
+
+    <div class="row" id="haut">
+      <div class="col-sm">
+  
+
+       <div class="card_btn" onclick="openmodalto('1')">
+        <center>
+       <p class="text_icon" id="text_1"></p>
+      </center>
+      </div>
+
+  
+      </div>
+      <div class="col-sm">
+            <div class="card_btn" onclick="openmodalto('2')">
+              <center>
+              <p class="text_icon" id="text_2"></p>
+            </center>
+  </div>
+      </div>
+      <div class="col-sm">
+            <div class="card_btn" onclick="openmodalto('3')">
+              <center>
+              <p class="text_icon" id="text_3"></p>
+            </center>
+  </div>
+      </div>
+      <div class="col-sm">
+             <div class="card_btn" onclick="openmodalto('4')">
+              <center>
+              <p class="text_icon" id="text_4"></p>
+            </center>
+  </div>
+      </div>
+    </div>
+  
+    <div class="row" id="bas">
+      <div class="col-sm">
+           <div class="card_btn" onclick="openmodalto('5')">
+            <center>
+            <p class="text_icon" id="text_5"></p>
+          </center>
+  </div>
+      </div>
+      <div class="col-sm">
+            <div class="card_btn" onclick="openmodalto('6')">
+              <center>
+              <p class="text_icon" id="text_6"></p>
+            </center>
+  </div>
+      </div>
+      <div class="col-sm">
+            <div class="card_btn" onclick="openmodalto('7')">
+              <center>
+              <p class="text_icon" id="text_7"></p>
+            </center>
+  </div>
+      </div>
+      <div class="col-sm">
+             <div class="card_btn" onclick="openmodalto('8')">
+              <center>
+              <p class="text_icon" id="text_8"></p>
+            </center>
+  </div>
+      </div>
+      
+    </div>
+  
+  
+
+    
+  </div>
+
+<center>
+  <h1 style="color:#FFF; font-size:2em;margin-left:-1.5em;margin-top:1em"><img style="height:1.3em" src="logo.svg">FlashDesk</h1>
+
+</center>
+
+</div>
+<div class="modal fade" id="errormodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Une erreur est survenu</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Veuillez quittez l'application.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" onclick="errorhandling()">Quitter</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script
+  src="https://code.jquery.com/jquery-3.5.1.js"
+  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous"></script>
+
+    <script src="nosleep.js"></script>
+
+    <script>
+
+      function errorhandling(){
+        document.webkitCancelFullScreen();
+        window.location.replace("http://www.google.com");
+      }
+
+      
+        var noSleep = new NoSleep();
+        var HttpClient = function() {
+    this.get = function(aUrl, aCallback) {
+        var anHttpRequest = new XMLHttpRequest();
+        anHttpRequest.onreadystatechange = function() { 
+            if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200){
+                aCallback(anHttpRequest.responseText);
+              }
+              if (anHttpRequest.readyState == 4 && anHttpRequest.status == 0) {
+      alert("Unknown Error Occured. Server response not received.");
+    }
+          
+        }
+
+        anHttpRequest.open( "GET", aUrl, true );            
+        anHttpRequest.send( null );
+    }
+}   
+function fullscreen(){
+    var el = document.documentElement
+    , rfs = // for newer Webkit and Firefox
+           el.requestFullscreen
+        || el.webkitRequestFullScreen
+        || el.mozRequestFullScreen
+        || el.msRequestFullscreen
+;
+if(typeof rfs!="undefined" && rfs){
+  rfs.call(el);
+} else if(typeof window.ActiveXObject!="undefined"){
+  var wscript = new ActiveXObject("WScript.Shell");
+  if (wscript!=null) {
+     wscript.SendKeys("{F11}");
+  }
+}
+}
+var config;
+function start_app(){    
+fullscreen()
+noSleep.enable();
+$(".init_page").hide()
+$(".load_page").show()
+$.ajax({
+  url: '/config',
+  dataType: 'json',
+  success: function (data, textStatus, jqXHR) {
+    console.log(data);
+    config = data
+    $(".load_page").hide()
+    $(".button_page").show()
+    list_refresh()
+    client = new HttpClient();
+client.get('/connreq', function(response) {
+
+});
+
+
+  }
+});
+
+
+var sync_button = setInterval(function(){
+  $.ajax({
+  url: '/config',
+  dataType: 'json',
+  success: function (data, textStatus, jqXHR) {
+
+    config = data
+    list_refresh();
+
+  },
+  error: function(){
+         
+         $('#errormodal').modal('show')
+     },
+     timeout: 3000
+});
+    }, 1000)
+
+}   
+
+
+function list_refresh(){
+for (var i = 1; i < 9; i++) {
+ 
+$("#text_"+i).text(config[i].name)
+
+}
+console.log("sync")
+}
+
+function init(){
+
+
+    $(".init_page").show()
+    $(".load_page").hide()
+    $(".button_page").hide()
+}
+PleaseRotateOptions = {
+  startOnPageLoad: true,
+    onHide: function(){},
+    onShow: function(){},
+    forcePortrait: false,
+    message: "Veuillez mettre votre appareil en mode portrait",
+    subMessage: "FlashDesk",
+    allowClickBypass: false,
+    onlyMobile: true,
+    zIndex: 1000,
+    iconNode: null
+    };
+
+
+function openmodalto(id){
+   client = new HttpClient();
+client.get('/action?button='+id, function(response) {
+    
+});
+}
+
+    </script>
+    <script src="rotate.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>

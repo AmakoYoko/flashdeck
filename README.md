@@ -6,16 +6,13 @@
 
 Grâce à FlashDeck vous pouvez créer des macros et les actionner depuis votre téléphone.
 
+C'est sans application sur votre téléphone ! Il suffit juste d'un navigateur web :)
 
 
-
-### A faire
- - Dans l'appli : Fermer la connexion quand le client se ferme
- - Ajouter les touches CTRL, Shift etc
+### A fairee
  - Faire plusieurs deck
  - Ajouter un menu paramètre 
- - Permettre de changer de Port
-
+ 
 
 #### Crédit :
 
