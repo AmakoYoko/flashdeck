@@ -12,7 +12,7 @@ C'est sans application sur votre téléphone ! Il suffit juste d'un navigateur w
 
 
 
-### A fairee
+### A faire
  - Faire plusieurs deck
  - Ajouter un menu paramètre 
  
