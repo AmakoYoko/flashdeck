@@ -4,7 +4,7 @@
   "description": "Remote Macro",
   "keywords": [],
   "main": "./main.js",
-  "version": "3.0.3",
+  "version": "4.0.1",
   "author": "AmakoYoko",
   "scripts": {
     "start": "electron .",
