@@ -21,7 +21,6 @@ C'est sans application sur votre téléphone ! Il suffit juste d'un navigateur w
 - RobotJS
 - Express
 - NodeJS
-- Appinventor
 
 
 

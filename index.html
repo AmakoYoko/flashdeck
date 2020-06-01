@@ -1,37 +1,27 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-   
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet">
     <script
     src="https://code.jquery.com/jquery-3.5.1.js"
     integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
     crossorigin="anonymous" onload="window.$ = window.jQuery = module.exports;"></script>
-
-    <!-- Bootstrap CSS -->
+    <script
+    src="engine.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script>
-     
-      const { ipcRenderer } = require('electron')
-      document.config = JSON.parse(ipcRenderer.sendSync('config_init', ''))
-      console.log(document.config)
-      
-      
-      var syncdevices = setInterval(function(){
-        synstate = ipcRenderer.sendSync('connecok', '')
-        console.log(synstate)
-        if(synstate == 1){
-          $('#waitingmobile').modal("hide");
-          clearInterval(syncdevices)
-        }
-      }, 500)
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+ 
 
-
-  </script>
     <title>FlashDeck</title>
     <style>
+      .col-sm{
+        margin-top:1em
+      }
+      
       .app_logo{
         height:5em
       }
@@ -45,10 +35,9 @@
         background-color:#d3d3d3;
       }
       
-      #haut{
-margin-bottom:1em;
- }
+ 
 #container_btn{
+  margin-top: -2em;
 width:30em;
 }
 #result{
@@ -59,6 +48,37 @@ width:30em;
     position: relative;
     color:#424242;
 }
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+.current_page{
+background-color: #e8aa62 !important;
+transition: 0.2s;
+}
+.page:hover{
+background-color:rgb(70, 218, 168);
+transition: 0.2s;
+}
+.page{
+transition: 0.2s;
+}
+.add_page{
+  margin-top: -0.4em;
+    color: #b1b1b1;
+
+}
+.remove_page{
+  margin-left: -1em;
+
+  margin-top: -0.4em;
+    color: #f16464;
+}
     </style>
   </head>
 
@@ -67,76 +87,17 @@ width:30em;
 
     <div class="container" id="container_btn">
 
-      <div class="row" id="haut">
-        <div class="col-sm">
-    
-
-         <div class="card_btn" onclick="openmodalto('1')">
-          <center>
-         <p class="text_icon" id="text_1"></p>
-        </center>
-        </div>
+      <div class="row" id="deck">
 
     
-        </div>
-        <div class="col-sm">
-              <div class="card_btn" onclick="openmodalto('2')">
-                <center>
-                <p class="text_icon" id="text_2"></p>
-              </center>
     </div>
-        </div>
-        <div class="col-sm">
-              <div class="card_btn" onclick="openmodalto('3')">
-                <center>
-                <p class="text_icon" id="text_3"></p>
-              </center>
-    </div>
-        </div>
-        <div class="col-sm">
-               <div class="card_btn" onclick="openmodalto('4')">
-                <center>
-                <p class="text_icon" id="text_4"></p>
-              </center>
-    </div>
-        </div>
-      </div>
-    
-      <div class="row" id="bas">
-        <div class="col-sm">
-             <div class="card_btn" onclick="openmodalto('5')">
-              <center>
-              <p class="text_icon" id="text_5"></p>
-            </center>
-    </div>
-        </div>
-        <div class="col-sm">
-              <div class="card_btn" onclick="openmodalto('6')">
-                <center>
-                <p class="text_icon" id="text_6"></p>
-              </center>
-    </div>
-        </div>
-        <div class="col-sm">
-              <div class="card_btn" onclick="openmodalto('7')">
-                <center>
-                <p class="text_icon" id="text_7"></p>
-              </center>
-    </div>
-        </div>
-        <div class="col-sm">
-               <div class="card_btn" onclick="openmodalto('8')">
-                <center>
-                <p class="text_icon" id="text_8"></p>
-              </center>
-    </div>
-        </div>
-      </div>
-    
-    
-    </div>
-    
-  
+
+   
+
+    <ol class="carousel-indicators" id="pageindicator">
+      <a id="savebtnhandler"></a>
+    </ol>
+ 
 
     <div class="modal fade"  data-backdrop="static" data-keyboard="false" style="color:#000" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -152,27 +113,55 @@ width:30em;
 
             <input type="text" class="form-control" id="nameoftouche" >
             <br>
-           <p>Action de la touche</p>
-            <select class="form-control" id="selectewheel" onchange="selectedchoose();">
-              <option value="0">Ne Rien Faire</option>
-              <option value="1">Ecrire une série de lettre</option>
-              <option value="2">Ouvrir un programme</option>
-              <option value="3">Jouer un son</option>     
-              <option value="4">Contrôle Multimedia</option>
-              <option value="5">Raccourci Clavier</option>          
-            </select>
-            <div id="result">
+           <p>Action de la touche :</p>
+            <div id="actionframe">
 
             </div>
+
+           <center>
+            <span onclick="addactionforbutton()" class="material-icons">
+              add_circle_outline
+              </span>
+           </center>
+           
+
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>
-            <button type="button" onclick="validate();" id="validatebutton"class="btn btn-success">Valider</button>
+            <button type="button" onclick="savebutton();" id="validatebuttonsave" class="btn btn-success">Valider</button>
           </div> 
         </div>
       </div>
     </div>
   </div>
 
+<div class="modal fade" style="color:#000" id="selectaction" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="fdgdg">Séléction d'une action</h5>
+                
+      </div>
+      <div class="modal-body">
+        <select class="form-control" id="selectewheel" onchange="selectedchoose();">
+          <option value="0">Ne Rien Faire</option>
+          <option value="1">Ecrire une série de lettre</option>
+          <option value="2">Ouvrir un programme</option>
+          <option value="3">Jouer un son</option>     
+          <option value="4">Contrôle Multimedia</option>
+          <option value="5">Raccourci Clavier</option>    
+          <option value="6">Delai</option>          
+        </select>
+        <div id="result">
+
+        </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" onclick="closemodalselection()" class="btn btn-danger">Annuler</button>
+      <button type="button"  onclick="validate()"class="btn btn-success">Valider</button>
+    </div> 
+  </div>
+</div>
+</div>
 
 
     <div class="modal fade" style="color:#000" id="waitingmobile" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -195,160 +184,25 @@ width:30em;
       </div>
     </div>
   </div>
-
-
-<script>
-function list_refresh(){
-for (var i = 1; i < 9; i++) {
-$("#text_"+i).text(document.config[i].name)
-
-}
-list_refresh()
-
-}
-
-function init(){
-  $('#waitingmobile').modal("show");
-  list_refresh();
-  
-}
-  
-  
-  var id_btn;
-  var valueselect;
-function openmodalto(id)
-{
-  id_btn = id;
-  $('#exampleModal').modal("show")
-  $("#titlemodal").text("Modifier le bouton "+id)
-  $("#nameoftouche").val(document.config[id].name);
-  $("#selectewheel").val(document.config[id].type)
-  selectedchoose()
-  $("#action").val(document.config[id].action)
-  $("#listeninput").val(document.config[id].action)
-
-  
- 
-}  
-
-function selectedchoose(){
-  console.log("ok")
-  valueselect = $("#selectewheel").val();
-  if(valueselect == 0){
-    $("#result").html(``)
-  }
-
-
-  if(valueselect == 1){
-    $("#result").html(`<input type="text" class="form-control" id="action" placeholder="Suite de touche">
-    <br>
-    <p class="important">Certain caractère ne sont pas disponible (é,è,ù etc)</p>
-    `)
-  }
-
-  if(valueselect == 2){
-    $("#result").html(`<input type="file" id="action" class="form-control-file" >`)
-  }
-
-  if(valueselect == 3){
-    $("#result").html(`<input value="Ouvrir un son" id="action" type="file" accept="audio/mp3" class="form-control-file" >`)
-  }
-  if(valueselect == 4){
-    $("#result").html(`
-<div class="btn-group" role="group" aria-label="Basic example">
-  <button type="button" onclick="multimediamode('1');" class="btn btn-secondary">V+</button>
-  <button type="button" onclick="multimediamode('2');"class="btn btn-secondary">V-</button>
-  <button type="button" onclick="multimediamode('3');"class="btn btn-secondary">⏮️</button>
-  <button type="button" onclick="multimediamode('4');"class="btn btn-secondary">⏭</button>
-  <button type="button" onclick="multimediamode('5');"class="btn btn-secondary">⏯️</button>
-  <button type="button" onclick="multimediamode('6');"class="btn btn-secondary">Mute</button>
-</div>
-`)
-  }
-
-  if(valueselect == 5){
-    $("#result").html(`
-    <div class="input-group mb-3">
-  <input type="text" class="form-control" id="listeninput" readonly onkeydown="listenkey(event)" placeholder="Touche clavier" aria-label="Recipient's username" aria-describedby="button-addon2">
-  <div class="input-group-append">
-    <input class="btn btn-outline-secondary"  id="startbutton" onclick="startlisten()" type="button" value="Saisi">
-
-    </div>
-</div>
-
-`)
-  }
-
-
-}
-var stps = 0;
-var array;
-function startlisten(){
-  if(stps == 0){
-document.querySelector('#startbutton').value = 'Arrêter';
-document.querySelector("#listeninput").focus();
-
-document.querySelector('#startbutton').classList.remove("btn-outline-secondary");
-document.querySelector('#startbutton').classList.add("btn-outline-danger");
-array = [];
-stps = 1;
-}else{
-document.querySelector('#startbutton').value = 'Saisi';
-
-document.querySelector('#startbutton').classList.remove("btn-outline-danger");
-document.querySelector('#startbutton').classList.add("btn-outline-secondary");
-
-stps = 0;
-}
-
-
-
-}
-var bx;
-function listenkey(event){
-  var x = event.key;
-  if (x != bx){
-  bx=x;
-  document.getElementById("listeninput").value = document.getElementById("listeninput").value + x + " - ";
-  array.push(x);
-  }
-}
-function multimediamode(id){
-  multimediamodeid = id;
-}
-function validate(){
-console.log(id_btn)
-console.log(valueselect)
-console.log($("#nameoftouche").val())
-if(valueselect == 2 || valueselect == 3){
-console.log(document.getElementById("action").files[0].path)
-actionuri = document.getElementById("action").files[0].path
-}else{
-  actionuri = $("#action").val()
-  console.log($("#action").val())
-}
-if(valueselect == 4){
-  actionuri = multimediamodeid;
-}
-if(valueselect == 5){
-  actionuri = array.toString();
-}
-document.config[id_btn].name = $("#nameoftouche").val();
-document.config[id_btn].type = valueselect;
-document.config[id_btn].action = actionuri;
-
-$('#exampleModal').modal("hide")
-list_refresh()
-
-
-
-
-}
-</script>
    <script>
       require('./renderer.js')
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+       <script>
+     
+        const { ipcRenderer } = require('electron')
+        document.config = JSON.parse(ipcRenderer.sendSync('config_init', ''))
+        console.log(document.config)     
+        var syncdevices = setInterval(function(){
+          synstate = ipcRenderer.sendSync('connecok', '')
+          console.log(synstate)
+          if(synstate == 1){
+            hideqr()
+            console.log("HIDE")
+            clearInterval(syncdevices)
+          }
+        }, 500)
+  
+  
+    </script>
   </body>
 </html>

@@ -5,11 +5,11 @@ const { existsSync,readFileSync, fs } = require('fs') // used to read files
 const { ipcMain } = require('electron') // used to communicate asynchronously from the main process to renderer processes.
 const rootPath = require('electron-root-path').rootPath;
 const configDir =  (electron.app || electron.remote.app).getPath('userData');
+
 if (!existsSync(configDir+"\\config.json")) {
   console.log("write config")
-  require('fs').writeFileSync(configDir+"\\config.json", '{"1":{"name":"","img":"","type":"0","action":""},"2":{"name":"","img":"","type":"0","action":""},"3":{"name":"","img":"","type":"0","action":""},"4":{"name":"","img":"","type":"0","action":""},"5":{"name":"","img":"","type":"0","action":""},"6":{"name":"","img":"","type":"0","action":""},"7":{"name":"","img":"","type":"0" ,"action":""},"8":{"name":"","img":"","type":"0","action":""},"settings":{"computername":""}}', 'utf-8');
+  require('fs').writeFileSync(configDir+"\\config.json", '{"action":[]}')
 }
-
 
 function readConfig () {
   const data = readFileSync(configDir+"\\config.json", 'utf8')
@@ -20,12 +20,12 @@ ipcMain.on('config_init', (event, arg) => {
   event.returnValue = readConfig()
 })
 
-var stt = 0;
+
 ipcMain.on('sync_devices', (event, arg) => {
   event.returnValue = "1"
   stt = 1
 })
-
+var stt = 0;
 ipcMain.on('connecok', (event, arg) => {  
   event.returnValue = stt
 })
@@ -35,18 +35,18 @@ function createWindow () {
   const mainWindow = new BrowserWindow({
     width: 800,
     height: 400,
-    resizable: false,
+    resizable: true,
     icon: __dirname + '/icon.ico',
     webPreferences: {
       nodeIntegration: true
     }
   })
 
-  mainWindow.setMenu(null);
+ mainWindow.setMenu(null);
   mainWindow.loadFile('index.html')
 
   // Open the DevTools.
- // mainWindow.webContents.openDevTools()
+  // mainWindow.webContents.openDevTools()
 }
 
 

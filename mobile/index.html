@@ -242,15 +242,18 @@ $.ajax({
   url: '/config',
   dataType: 'json',
   success: function (data, textStatus, jqXHR) {
+    client = new HttpClient();
+
+client.get('/connreq', function(response) {
+  console.log(data);
+});
     console.log(data);
-    config = data
+    config = data   
     $(".load_page").hide()
     $(".button_page").show()
     list_refresh()
-    client = new HttpClient();
-client.get('/connreq', function(response) {
 
-});
+
 
 
   }
@@ -262,7 +265,10 @@ var sync_button = setInterval(function(){
   url: '/config',
   dataType: 'json',
   success: function (data, textStatus, jqXHR) {
-
+    console.log(data.blank)
+    if(data.blank){
+      console.log("ok")
+    }
     config = data
     list_refresh();
 
@@ -279,10 +285,13 @@ var sync_button = setInterval(function(){
 
 
 function list_refresh(){
+  $(".text_icon").text("");
 for (var i = 1; i < 9; i++) {
- 
+if(config.blank == 1){
+  $("#text_"+i).text("")
+}else{
 $("#text_"+i).text(config[i].name)
-
+}
 }
 console.log("sync")
 }
